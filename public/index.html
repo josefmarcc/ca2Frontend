@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack/Babel-demo</title>
+  <title>CA2-SPA</title>
 </head>
 
 <body>
 <div id="content" class="content">
-  <h2>All Persons</h2>
+  <h2 class="text-center">CA2</h2>
     <div style="min-height: 200px;">
       <table class="table" style="width: 90%">
         <thead>
@@ -16,10 +16,12 @@
             <td>ID</td>
             <td>First Name</td>
             <td>Last name</td>
-            <td>Phone</td>
+            <td>Email</td>
             <td>Street</td>
             <td>Zip</td>
             <td>City</td>
+            <td>Hobbies</td>
+            <td>Phone</td>
           </tr>
         </thead>
         <tbody id="tbody"></tbody>
@@ -28,6 +30,24 @@
     <button type="button" id="reload" class="btn btn-secondary">Reload Data</button>
     <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
       Add New Person
+    </button>
+    <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      Persons by hobby
+    </button>
+    <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      Persons by city
+    </button>
+    <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      Hobbies count
+    </button>
+    <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      All zips/cityis
+    </button>
+    <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      Edit person
+    </button>
+    <button type="button" id="addPerson" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+      Delete person
     </button>
     <div id="error" class="alert alert-danger" role="alert" style="width: 50%;margin-top:10px;"></div>
 
