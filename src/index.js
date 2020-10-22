@@ -1,49 +1,48 @@
 import "./style.css"
+import "bootstrap"
 import "bootstrap/dist/css/bootstrap.css"
-import "./jokeFacade"
-import jokeFacade from "./jokeFacade"
+import SERVER_URL from "./constants.js"
+import personFacade from "./personFacade"
 
-document.getElementById("all-content").style.display = "block"
-
-/* 
-  Add your JavaScript for all exercises Below or in separate js-files, which you must the import above
-*/
-
-/* JS For Exercise-1 below */
-
-
-/* JS For Exercise-2 below */
-
-
-
-/* JS For Exercise-3 below */
-
-
-/* 
-Do NOT focus on the code below, UNLESS you want to use this code for something different than
-the Period2-week2-day3 Exercises
-*/
-
-function hideAllShowOne(idToShow) {
-  document.getElementById("about_html").style = "display:none"
-  document.getElementById("ex1_html").style = "display:none"
-  document.getElementById("ex2_html").style = "display:none"
-  document.getElementById("ex3_html").style = "display:none"
-  document.getElementById(idToShow).style = "display:block"
+/* LOAD PERSONS */
+function loadPersons(){
+personFacade.getPersons()
+.then(data => {
+  const persons = data.all;
+  const personRows = persons.map(person => `
+  <tr>
+   <td>${person.id}</td>
+   <td>${person.fName}</td>
+   <td>${person.lName}</td>
+   <td>${person.phone}</td>
+   <td>${person.street}</td>
+   <td>${person.zip}</td>
+   <td>${person.city}</td>
+   <td><a href="#" class="btnDelete" id=${person.id} >delete</a>
+  </tr>
+ `)
+ const personRowsAsString = personRows.join("");
+ document.getElementById("tbody").innerHTML = personRowsAsString;
+})
 }
+loadPersons()
+document.getElementById("reload").addEventListener("click", loadPersons)
 
-function menuItemClicked(evt) {
-  const id = evt.target.id;
-  switch (id) {
-    case "ex1": hideAllShowOne("ex1_html"); break
-    case "ex2": hideAllShowOne("ex2_html"); break
-    case "ex3": hideAllShowOne("ex3_html"); break
-    default: hideAllShowOne("about_html"); break
+document.getElementById("tbody").addEventListener("click", (event) => {
+  personFacade.deletePerson(event.target.id)
+});
+
+  
+/* ADD NEW PERSON */
+function addNewPerson(){
+  let newPerson = {
+    "fName" : document.getElementById("personFname").value,
+    "lName" : document.getElementById("personLname").value,
+    "phone" : document.getElementById("personPhone").value,
+    "street" : document.getElementById("personStreet").value,
+    "zip" : document.getElementById("personZip").value,
+    "city" : document.getElementById("personCity").value,
   }
-  evt.preventDefault();
+  personFacade.addPerson(newPerson)
 }
-document.getElementById("menu").onclick = menuItemClicked;
-hideAllShowOne("about_html");
-
-
-
+document.getElementById("savebtn").addEventListener("click", addNewPerson)
