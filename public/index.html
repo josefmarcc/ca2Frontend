@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
 </head>
 
 <body>
-<div id="content" class="content">
-  <h2 class="text-center">CA2</h2>
+  <div id="content" class="content">
+    <h2 class="text-center mt-5 mb-3">Persons</h2>
+    <!-- Person table-->
     <div style="min-height: 200px;">
       <table class="table" style="width: 90%">
         <thead>
@@ -31,27 +33,53 @@
     <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
       Add New Person
     </button>
-    <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    <button type="button" id="personsByHobby" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
       Persons by hobby
     </button>
-    <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    <button type="button" id="personsByCity" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
       Persons by city
     </button>
-    <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+
+    <!-- Hobby table-->
+    <h2 class="text-center mt-5 mb-3">Hobbies</h2>
+    <div style="min-height: 200px;">
+      <table class="table" style="width: 90%">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Wiki-link</td>
+            <td>Category</td>
+            <td>Type</td>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <button type="button" id="hobbiesCount" class="btn btn-primary" data-toggle="modal" data-target="#myModal3">
       Hobbies count
     </button>
-    <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-      All zips/cityis
+    <button type="button" id="allHobbies" class="btn btn-primary">
+      All hobbies
     </button>
-    <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-      Edit person
+     <!-- Cities table-->
+     <h2 class="text-center mt-5 mb-3">Cities/Zip</h2>
+     <div style="min-height: 200px;">
+       <table class="table" style="width: 90%">
+         <thead>
+           <tr>
+             <td>City Name</td>
+             <td>Zip Code</td>
+           </tr>
+         </thead>
+         <tbody id="tbody"></tbody>
+       </table>
+     </div>
+    <button type="button" id="allZips" class="btn btn-primary">
+      All zips/cities
     </button>
-    <button type="button" id="addPerson" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
-      Delete person
-    </button>
-    <div id="error" class="alert alert-danger" role="alert" style="width: 50%;margin-top:10px;"></div>
 
-    <!-- Modal -->
+
+    <!-- Modal Add new person -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -96,7 +124,55 @@
         </div>
       </div>
     </div>
-</div>
+    <!-- Modal Persons by hobby -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div id="header" class="modal-header">
+
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="id">
+            <div class="form-group">
+              <label for="fname">Hobby</label>
+              <input type="text" class="form-control" id="hobbyName">
+            </div>
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" id="savebtn" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Persons by city -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div id="header" class="modal-header">
+
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="id">
+            <div class="form-group">
+              <label for="fname">City</label>
+              <input type="text" class="form-control" id="cityName">
+            </div>
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" id="savebtn" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- #################################################################-->
   <!-- IMPORTANT  DO NOT IMPORT ANY JavaScript in this file by YOURSELF -->

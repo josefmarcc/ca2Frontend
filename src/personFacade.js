@@ -44,12 +44,71 @@ function addPerson(person) {
          })
     }
 
+    function editPerson(person) {
+      const options = makeOptions("PUT", person)
+      return fetch(URL + person.id, options)
+      .then(handleHttpErrors)
+      .catch(err =>{
+          if(err.status){
+            err.fullError.then(e=>
+              console.log(e.message),
+              document.getElementById("error").innerHTML = e.message
+              )
+          }
+          else{ console.log("Network error"); }
+       })
+  }
+
+  function getZips(){
+    return fetch(URL + "zipcodes")
+    .then(handleHttpErrors)
+    .catch(err =>{
+        if(err.status){
+          err.fullError.then(e=>
+            console.log(e.message),
+            document.getElementById("error").innerHTML = e.message
+            )
+        }
+        else{ console.log("Network error"); }
+     })
+    }
+
+    function getHobbies(){
+      return fetch(URL + "hobbies")
+      .then(handleHttpErrors)
+      .catch(err =>{
+          if(err.status){
+            err.fullError.then(e=>
+              console.log(e.message),
+              document.getElementById("error").innerHTML = e.message
+              )
+          }
+          else{ console.log("Network error"); }
+       })
+      }
+
+      function getPersonByHobby(hobby) {
+        const options = makeOptions("GET",hobby)
+        return fetch(URL + hobby)
+        .then(handleHttpErrors)
+    }
+
+    function getPersonByCity(city) {
+      const options = makeOptions("GET",city)
+      return fetch(URL + city)
+      .then(handleHttpErrors)
+  }
 
 
 const personFacade = {
     getPersons,
     addPerson,
-    deletePerson
+    deletePerson,
+    editPerson,
+    getZips,
+    getHobbies,
+    getPersonByHobby,
+    getPersonByCity
 }
 
 

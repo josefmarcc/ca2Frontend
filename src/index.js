@@ -46,3 +46,27 @@ function addNewPerson(){
   personFacade.addPerson(newPerson)
 }
 document.getElementById("savebtn").addEventListener("click", addNewPerson)
+
+/*DELETE & EDIT PERSON BUTTONS */
+document.getElementById("tbody").addEventListener('click',function(e){
+  if(e.target && e.target.className== 'btnDelete'){
+    personFacade.deletePerson(e.target.id)
+   } 
+   if(e.target && e.target.className== 'btnEdit'){
+    let personToEdit = e.target.id
+    document.getElementById("editBtn").addEventListener("click", function(e){               
+      let newPerson = personFacade.getPerson(personToEdit)
+      newPerson = {
+        id: personToEdit,
+        fName: document.getElementById("editPersonFname").value,
+        lName: document.getElementById("editPersonLname").value,
+        phone: document.getElementById("editPersonPhone").value,
+        street: document.getElementById("editPersonStreet").value,
+        zip: document.getElementById("editPersonZip").value,
+        city: document.getElementById("editPersonCity").value,
+        }
+        personFacade.editPerson(newPerson)    
+      
+    });
+  }
+}); 
