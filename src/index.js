@@ -14,41 +14,44 @@ personFacade.getPersons()
    <td>${person.id}</td>
    <td>${person.fName}</td>
    <td>${person.lName}</td>
-   <td>${person.phone}</td>
+   <td>${person.email}</td>
    <td>${person.street}</td>
    <td>${person.zip}</td>
-   <td>${person.city}</td>
+   <td>${person.hobbyName}</td>
+   <td>${person.phoneNumber}</td>
    <td><a href="#" class="btnDelete" id=${person.id} >delete</a>
+   <td><a href="#" class="btnEdit" id="${person.id}" data-whatever="id="${person.id}" data-toggle="modal" data-target="#myModal2">edit</a></td>
   </tr>
  `)
  const personRowsAsString = personRows.join("");
- document.getElementById("tbody").innerHTML = personRowsAsString;
+ document.getElementById("tbody-1").innerHTML = personRowsAsString;
 })
 }
 loadPersons()
 document.getElementById("reload").addEventListener("click", loadPersons)
 
-document.getElementById("tbody").addEventListener("click", (event) => {
+document.getElementById("tbody-1").addEventListener("click", (event) => {
   personFacade.deletePerson(event.target.id)
 });
-
   
 /* ADD NEW PERSON */
 function addNewPerson(){
   let newPerson = {
     "fName" : document.getElementById("personFname").value,
     "lName" : document.getElementById("personLname").value,
-    "phone" : document.getElementById("personPhone").value,
+    "email" : document.getElementById("personEmail").value,
+    "phoneNumber" : document.getElementById("personPhoneNumber").value,
+    "phoneDesc" : document.getElementById("personPhoneDesc").value,
     "street" : document.getElementById("personStreet").value,
     "zip" : document.getElementById("personZip").value,
-    "city" : document.getElementById("personCity").value,
+    "hobbyName" : document.getElementById("personHobbyName").value,
   }
   personFacade.addPerson(newPerson)
 }
 document.getElementById("savebtn").addEventListener("click", addNewPerson)
 
 /*DELETE & EDIT PERSON BUTTONS */
-document.getElementById("tbody").addEventListener('click',function(e){
+document.getElementById("tbody-1").addEventListener('click',function(e){
   if(e.target && e.target.className== 'btnDelete'){
     personFacade.deletePerson(e.target.id)
    } 
@@ -60,13 +63,66 @@ document.getElementById("tbody").addEventListener('click',function(e){
         id: personToEdit,
         fName: document.getElementById("editPersonFname").value,
         lName: document.getElementById("editPersonLname").value,
-        phone: document.getElementById("editPersonPhone").value,
+        phone: document.getElementById("editPersonEmail").value,
         street: document.getElementById("editPersonStreet").value,
         zip: document.getElementById("editPersonZip").value,
-        city: document.getElementById("editPersonCity").value,
+        city: document.getElementById("editPersonHobby").value,
+        phone: document.getElementById("editPersonPhone").value
         }
         personFacade.editPerson(newPerson)    
       
     });
   }
 }); 
+
+/* GET PERSON BY CITY */
+function getPersonByZip() {
+let zipInput = document.getElementById("zipInput").value;
+const zip = personFacade.getPersonByZip(zipInput)
+.then(data => {
+  const persons = data.all;
+  const personRows = persons.map(person => `
+  <tr>
+   <td>${person.id}</td>
+   <td>${person.fName}</td>
+   <td>${person.lName}</td>
+   <td>${person.email}</td>
+   <td>${person.street}</td>
+   <td>${person.zip}</td>
+   <td>${person.hobbyName}</td>
+   <td>${person.phoneNumber}</td>
+   <td><a href="#" class="btnDelete" id=${person.id} >delete</a>
+   <td><a href="#" class="btnEdit" id="${person.id}" data-whatever="id="${person.id}" data-toggle="modal" data-target="#myModal2">edit</a></td>
+  </tr>
+ `)
+ const personRowsAsString = personRows.join("");
+ document.getElementById("tbody-1").innerHTML = personRowsAsString;
+})
+}
+document.getElementById("saveBtnZip").addEventListener("click", getPersonByZip);
+
+/* GET PERSOM BY HOBBY */
+function getPersonByHobby() {
+  let hobbyNameInsput = document.getElementById("hobbyName").value;
+  const hobby = personFacade.getPersonByHobby(hobbyNameInsput)
+  .then(data => {
+    const persons = data.all;
+    const personRows = persons.map(person => `
+    <tr>
+     <td>${person.id}</td>
+     <td>${person.fName}</td>
+     <td>${person.lName}</td>
+     <td>${person.email}</td>
+     <td>${person.street}</td>
+     <td>${person.zip}</td>
+     <td>${person.hobbyName}</td>
+     <td>${person.phoneNumber}</td>
+     <td><a href="#" class="btnDelete" id=${person.id} >delete</a>
+     <td><a href="#" class="btnEdit" id="${person.id}" data-whatever="id="${person.id}" data-toggle="modal" data-target="#myModal2">edit</a></td>
+    </tr>
+   `)
+   const personRowsAsString = personRows.join("");
+   document.getElementById("tbody-1").innerHTML = personRowsAsString;
+  })
+}
+document.getElementById("saveBtnHobby").addEventListener("click", getPersonByHobby);

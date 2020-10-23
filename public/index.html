@@ -21,22 +21,23 @@
             <td>Email</td>
             <td>Street</td>
             <td>Zip</td>
-            <td>City</td>
             <td>Hobbies</td>
             <td>Phone</td>
+            <td>Delete</td>
+            <td>Edit</td>
           </tr>
         </thead>
-        <tbody id="tbody"></tbody>
+        <tbody id="tbody-1"></tbody>
       </table>
     </div>
     <button type="button" id="reload" class="btn btn-secondary">Reload Data</button>
     <button type="button" id="addPerson" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
       Add New Person
     </button>
-    <button type="button" id="personsByHobby" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+    <button type="button" id="personsByHobby" class="btn btn-primary" data-toggle="modal" data-target="#myModal3">
       Persons by hobby
     </button>
-    <button type="button" id="personsByCity" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
+    <button type="button" id="personsByCity" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
       Persons by city
     </button>
 
@@ -97,8 +98,16 @@
               <input type="text" class="form-control" name="lname" id="personLname">
             </div>
             <div class="form-group">
-              <label for="phone">Phone</label>
-              <input type="text" class="form-control" name="phone" id="personPhone">
+              <label for="phone">Email</label>
+              <input type="text" class="form-control" name="phone" id="personEmail">
+            </div>
+            <div class="form-group">
+              <label for="city">Phone Number</label>
+              <input type="text" class="form-control" name="city" id="personPhoneNumber">
+            </div>
+            <div class="form-group">
+              <label for="city">Phone Description</label>
+              <input type="text" class="form-control" name="city" id="personPhoneDesc">
             </div>
             <div class="form-group">
               <label for="street">Street</label>
@@ -109,13 +118,12 @@
               <input type="text" class="form-control" name="zip" id="personZip">
             </div>
             <div class="form-group">
-              <label for="city">City</label>
-              <input type="text" class="form-control" name="city" id="personCity">
+              <label for="city">Hobby</label>
+              <input type="text" class="form-control" name="city" id="personHobbyName">
             </div>
 
             <!-- Allow form submission with keyboard without duplicating the dialog button -->
             <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -124,8 +132,59 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal Edit person -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div id="header" class="modal-header">
+
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="id">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" class="form-control" id="editPersonFname">
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" class="form-control" name="lname" id="editPersonLname">
+            </div>
+            <div class="form-group">
+              <label for="phone">Email</label>
+              <input type="text" class="form-control" name="email" id="editPersonEmail">
+            </div>
+            <div class="form-group">
+              <label for="street">Street</label>
+              <input type="text" class="form-control" name="street" id="editPersonStreet">
+            </div>
+            <div class="form-group">
+              <label for="zip">Zip</label>
+              <input type="text" class="form-control" name="zip" id="editPersonZip">
+            </div>
+            <div class="form-group">
+              <label for="city">Hobbies</label>
+              <input type="text" class="form-control" name="hobbies" id="editPersonHobby">
+            </div>
+            <div class="form-group">
+              <label for="city">Phone</label>
+              <input type="text" class="form-control" name="phone" id="editPersonPhone">
+            </div>
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" id="savebtn" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
     <!-- Modal Persons by hobby -->
-    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div id="header" class="modal-header">
@@ -143,31 +202,29 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="button" id="savebtn" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            <button type="button" id="saveBtnHobby" class="btn btn-primary" data-dismiss="modal">Save changes</button>
           </div>
         </div>
       </div>
     </div>
-    <!-- Modal Persons by city -->
-    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <!-- Modal Persons by zip -->
+    <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div id="header" class="modal-header">
-
           </div>
           <div class="modal-body">
             <input type="hidden" id="id">
             <div class="form-group">
-              <label for="fname">City</label>
-              <input type="text" class="form-control" id="cityName">
+              <label for="fname">Zip</label>
+              <input type="text" class="form-control" id="zipInput">
             </div>
             <!-- Allow form submission with keyboard without duplicating the dialog button -->
             <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="button" id="savebtn" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            <button type="button" id="saveBtnZip" class="btn btn-primary" data-dismiss="modal">Save changes</button>
           </div>
         </div>
       </div>

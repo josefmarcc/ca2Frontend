@@ -1,7 +1,7 @@
-const URL = "https://dachma.dk/ca2backend/api/person/"
+const URL = "https://dachma.dk/ca2Backend/api/persons"
 
 function getPersons(){
-    return fetch(URL + "all")
+    return fetch(URL)
     .then(handleHttpErrors)
     .catch(err =>{
         if(err.status){
@@ -31,7 +31,7 @@ function addPerson(person) {
 
     function deletePerson(id) {
         const options = makeOptions("DELETE")
-        return fetch(URL + id, options)
+        return fetch(URL + "/" + id, options)
         .then(handleHttpErrors)
         .catch(err =>{
             if(err.status){
@@ -46,7 +46,7 @@ function addPerson(person) {
 
     function editPerson(person) {
       const options = makeOptions("PUT", person)
-      return fetch(URL + person.id, options)
+      return fetch(URL + "/" + person.id, options)
       .then(handleHttpErrors)
       .catch(err =>{
           if(err.status){
@@ -58,6 +58,18 @@ function addPerson(person) {
           else{ console.log("Network error"); }
        })
   }
+
+  function getPersonByHobby(hobby) {
+    const options = makeOptions("GET",hobby)
+    return fetch(URL + "/" + hobby)
+    .then(handleHttpErrors)
+}
+
+function getPersonByZip(zip) {
+  const options = makeOptions("GET",zip)
+  return fetch(URL + "/" + zip)
+  .then(handleHttpErrors)
+}
 
   function getZips(){
     return fetch(URL + "zipcodes")
@@ -87,18 +99,6 @@ function addPerson(person) {
        })
       }
 
-      function getPersonByHobby(hobby) {
-        const options = makeOptions("GET",hobby)
-        return fetch(URL + hobby)
-        .then(handleHttpErrors)
-    }
-
-    function getPersonByCity(city) {
-      const options = makeOptions("GET",city)
-      return fetch(URL + city)
-      .then(handleHttpErrors)
-  }
-
 
 const personFacade = {
     getPersons,
@@ -108,7 +108,7 @@ const personFacade = {
     getZips,
     getHobbies,
     getPersonByHobby,
-    getPersonByCity
+    getPersonByZip
 }
 
 
