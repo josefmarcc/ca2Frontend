@@ -59,9 +59,9 @@ function addPerson(person) {
        })
   }
 
-  function getPersonByHobby(hobby) {
+  function getHobbyCount(hobby) {
     const options = makeOptions("GET",hobby)
-    return fetch(URL + "/" + hobby)
+    return fetch(URL + "/count/" + hobby)
     .then(handleHttpErrors)
 }
 
@@ -72,7 +72,7 @@ function getPersonByZip(zip) {
 }
 
   function getZips(){
-    return fetch(URL + "zipcodes")
+    return fetch(URL + "/zipcodes")
     .then(handleHttpErrors)
     .catch(err =>{
         if(err.status){
@@ -107,7 +107,7 @@ const personFacade = {
     editPerson,
     getZips,
     getHobbies,
-    getPersonByHobby,
+    getHobbyCount,
     getPersonByZip
 }
 

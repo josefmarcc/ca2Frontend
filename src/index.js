@@ -126,3 +126,22 @@ function getPersonByHobby() {
   })
 }
 document.getElementById("saveBtnHobby").addEventListener("click", getPersonByHobby);
+
+
+
+function getAllZips(){
+    personFacade.getZips()
+    .then(data => {
+      const cityInfos = data.all;
+      const cityInfoRows = cityInfos.map(cityInfo => 
+      `<tr>
+       <td>${cityInfo.zip}</td>
+       <td>${cityInfo.city}</td>      
+      </tr>
+     `)
+     const cityInfoRowsAsString = cityInfoRows.join("");
+     document.getElementById("tbody-3").innerHTML = cityInfoRowsAsString;
+    })
+    }
+    getAllZips()
+    document.getElementById("allZips").addEventListener("click", getAllZips);
