@@ -1,3 +1,5 @@
+import SERVER_URL from './constants.js'
+
 const URL = "https://dachma.dk/ca2Backend/api/persons"
 
 function getPersons(){

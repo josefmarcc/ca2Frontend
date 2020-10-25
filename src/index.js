@@ -128,7 +128,6 @@ function getPersonByHobby() {
 document.getElementById("saveBtnHobby").addEventListener("click", getPersonByHobby);
 
 
-
 function getAllZips(){
     personFacade.getZips()
     .then(data => {
