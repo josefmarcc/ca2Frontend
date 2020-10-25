@@ -1,3 +1,5 @@
+import SERVER_URL from './constants.js'
+
 const URL = "https://dachma.dk/ca2Backend/api/persons"
 
 function getPersons(){
@@ -72,7 +74,7 @@ function getPersonByZip(zip) {
 }
 
   function getZips(){
-    return fetch(URL + "zipcodes")
+    return fetch(URL + "/zipcodes")
     .then(handleHttpErrors)
     .catch(err =>{
         if(err.status){
