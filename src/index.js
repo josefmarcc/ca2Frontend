@@ -134,8 +134,8 @@ function loadCities(){
     const cities = data.all;
     const cityRows = cities.map(city => `
     <tr>
-     <td>${city.zip}</td>
      <td>${city.city}</td>
+     <td>${city.zip}</td>
     </tr>
    `)
    const cityRowsAsString = cityRows.join("");
