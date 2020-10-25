@@ -127,7 +127,6 @@ function getPersonByHobby() {
 }
 document.getElementById("saveBtnHobby").addEventListener("click", getPersonByHobby);
 
-
 function loadCities(){
   personFacade.getZips()
   .then(data => {
