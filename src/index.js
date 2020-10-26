@@ -131,7 +131,7 @@ document.getElementById("saveBtnHobby").addEventListener("click", getPersonByHob
 function getAllZips(){
     personFacade.getZips()
     .then(data => {
-      const cityInfos = data.all;
+      const cityInfos = data;
       const cityInfoRows = cityInfos.map(cityInfo => 
       `<tr>
        <td>${cityInfo.zip}</td>
